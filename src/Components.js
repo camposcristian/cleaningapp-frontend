@@ -13,6 +13,7 @@ import styled from "styled-components";
 export const Swipe = styled.div`
   width : 100%;
   height : 300px;
+  background: rgba(0,0,0,0.2);
 `;
 
 // export const CarouselContainer = styled.div`

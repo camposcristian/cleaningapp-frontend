@@ -66,7 +66,7 @@ function App() {
       </header> */}
       <div {...handlers}>
         <Swipe>
-            <span>Swipe to left....</span>
+            <span>Swipe left....</span>
         </Swipe>
       </div>
       

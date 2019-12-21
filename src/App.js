@@ -32,7 +32,8 @@ function App() {
       type: "checkin",
       photo: dataUri,
       locationId: 1,
-      geostam: [21, 21]
+      geostamp: [21, 21],
+      timestamp: new Date()
     }).then(function () {
       console.log("Document successfully written!");
     })

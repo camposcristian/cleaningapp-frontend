@@ -4,6 +4,8 @@ import './App.css';
 import Camera from 'react-html5-camera-photo';
 // import ImagePreview from './ImagePreview';
 import 'react-html5-camera-photo/build/css/index.css';
+import { useSwipeable, Swipeable } from 'react-swipeable';
+import {Swipe} from "./Components";
 import firebase from "firebase";
 
 const firebaseApp = firebase.initializeApp({
@@ -17,6 +19,7 @@ const firebaseApp = firebase.initializeApp({
 });
 
 const db = firebaseApp.firestore();
+
 
 function App() {
   const [display, showCamera] = useState();
@@ -38,9 +41,33 @@ function App() {
       });
     // setDataUri(dataUri);
   }
-  // const isFullscreen = true;
+  const handlers = useSwipeable({
+    onSwipedLeft: () => showCamera(!display),
+    onSwipedRight: () => console.log("Right"),
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true
+  });
   return (
     <div className="App">
+      {/* <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header> */}
+      <div {...handlers}>
+        <Swipe>
+
+        </Swipe>
+      </div>
       <input type="button" onClick={() => showCamera(!display)} value="Check-in"></input>
       {
         display &&
@@ -57,3 +84,4 @@ function App() {
 }
 
 export default App;
+

@@ -5,7 +5,8 @@ import Camera from 'react-html5-camera-photo';
 // import ImagePreview from './ImagePreview';
 import 'react-html5-camera-photo/build/css/index.css';
 import { useSwipeable, Swipeable } from 'react-swipeable';
-import {Swipe} from "./Components";
+import { Swipe } from "./Components";
+import Countdown from 'react-countdown-now';
 import firebase from "firebase";
 
 const firebaseApp = firebase.initializeApp({
@@ -20,10 +21,9 @@ const firebaseApp = firebase.initializeApp({
 
 const db = firebaseApp.firestore();
 
-
 function App() {
   const [display, showCamera] = useState();
-  // const [dataUri, setDataUri] = useState('');
+  const [dataUri, setDataUri] = useState('');
 
   function handleTakePhoto(dataUri) {
     // Do stuff with the photo...
@@ -40,7 +40,7 @@ function App() {
       .catch(function (error) {
         console.error("Error writing document: ", error);
       });
-    // setDataUri(dataUri);
+    setDataUri(dataUri);
   }
   const handlers = useSwipeable({
     onSwipedLeft: () => showCamera(!display),
@@ -66,12 +66,12 @@ function App() {
       </header> */}
       <div {...handlers}>
         <Swipe>
-            <span>Swipe to left....</span>
+          <span>Swipe to left....</span>
         </Swipe>
       </div>
-      
+
       {
-        display &&
+        display && !dataUri &&
         <Camera onTakePhoto={(dataUri) => { handleTakePhoto(dataUri); }} />
         // (display && !dataUri)
         //   ? <Camera onTakePhotoAnimationDone={(dataUri) => { handleTakePhoto(dataUri); }}
@@ -80,6 +80,13 @@ function App() {
         //     isFullscreen={isFullscreen}
         //   />
       }
+      {
+        dataUri &&
+        <Countdown date={Date.now() + 2 * 60 * 60 * 1000}>
+          <span>You are good to go!</span>;
+        </Countdown>
+      }
+
     </div>
   );
 }

@@ -4,7 +4,7 @@ import './App.css';
 import Camera from 'react-html5-camera-photo';
 // import ImagePreview from './ImagePreview';
 import 'react-html5-camera-photo/build/css/index.css';
-import { useSwipeable, Swipeable } from 'react-swipeable';
+import { useSwipeable} from 'react-swipeable';
 import { Swipe } from "./Components";
 import Countdown from 'react-countdown-now';
 import firebase from "firebase";

@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import Camera from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
 
 function App() {
-  function handleTakePhoto (dataUri) {
+  const [display, showCamera] = useState(false);
+
+  function handleTakePhoto(dataUri) {
     // Do stuff with the photo...
     console.log('takePhoto');
   }
+
   return (
     <div className="App">
       {/* <header className="App-header">
@@ -25,10 +28,12 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <input type="button" value="Check-in"></input>
-      {/* <Camera
-      onTakePhoto = { (dataUri) => { handleTakePhoto(dataUri); } }
-    /> */}
+      <input type="button" onClick={() => showCamera(!display)} value="Check-in"></input>
+      {display &&
+        <Camera
+          onTakePhoto={(dataUri) => { handleTakePhoto(dataUri); }}
+        />
+      }
     </div>
   );
 }

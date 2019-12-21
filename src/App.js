@@ -1,34 +1,35 @@
 import React from 'react';
-import { Page, Button } from 'react-onsenui';
-import 'onsenui/css/onsenui.css';
-import 'onsenui/css/onsen-css-components.css';
 // import logo from './logo.svg';
 import './App.css';
+import Camera from 'react-html5-camera-photo';
+import 'react-html5-camera-photo/build/css/index.css';
 
 function App() {
-  // handleClick = e => {
-  //   Notification.alert('Hello world!');
-  // };
+  function handleTakePhoto (dataUri) {
+    // Do stuff with the photo...
+    console.log('takePhoto');
+  }
   return (
-    <Page>
-      <Button>Check-in</Button>
-    </Page>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
+    <div className="App">
+      {/* <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header> */}
+      <input type="button" value="Check-in"></input>
+      {/* <Camera
+      onTakePhoto = { (dataUri) => { handleTakePhoto(dataUri); } }
+    /> */}
+    </div>
   );
 }
 

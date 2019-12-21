@@ -9182,6 +9182,14 @@ react-app-polyfill@^1.0.5:
     regenerator-runtime "^0.13.3"
     whatwg-fetch "^3.0.0"
 
+react-countdown-now@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-countdown-now/-/react-countdown-now-2.1.2.tgz#b93d153fbb7a8d359beb32ecbf1de29d15f026c7"
+  integrity sha512-BgRnsxV2vnvyJAefDBigTX+ngX6eGd2xl6DIFdZPIZkbx0mzxlMEeoEQG01JyeHDjqaXFUpIonIbx1yYyaMwzg==
+  dependencies:
+    lodash.isequal "^4.5.0"
+    prop-types "^15.7.2"
+
 react-dev-utils@^10.0.0:
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-10.0.0.tgz#bd2d16426c7e4cbfed1b46fb9e2ac98ec06fcdfa"

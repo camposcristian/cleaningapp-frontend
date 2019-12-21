@@ -5,25 +5,25 @@ import Camera from 'react-html5-camera-photo';
 // import ImagePreview from './ImagePreview';
 import 'react-html5-camera-photo/build/css/index.css';
 import { useSwipeable, Swipeable } from 'react-swipeable';
-import {Swipe} from "./Components";
+import { Swipe } from "./Components";
+import Countdown from 'react-countdown-now';
 import firebase from "firebase";
 
 const firebaseApp = firebase.initializeApp({
-  apiKey: "AIzaSyAWIT6Rcn0gjptOAmICLfqrC3JO4US-KOg",
-  authDomain: "cleaningapp-2cf36.firebaseapp.com",
-  databaseURL: "https://cleaningapp-2cf36.firebaseio.com",
-  projectId: "cleaningapp-2cf36",
-  storageBucket: "cleaningapp-2cf36.appspot.com",
-  messagingSenderId: "83093851217",
-  appId: "1:83093851217:web:987d6ce307fcc653d3fc70"
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain:process.env.REACT_APP_AUTH_DOMAIN ,
+  databaseURL:process.env.REACT_APP_DATABASE_URL, 
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId:process.env.REACT_APP_MESSENGER_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID
 });
 
 const db = firebaseApp.firestore();
 
-
 function App() {
   const [display, showCamera] = useState();
-  // const [dataUri, setDataUri] = useState('');
+  const [dataUri, setDataUri] = useState('');
 
   function handleTakePhoto(dataUri) {
     // Do stuff with the photo...
@@ -40,7 +40,7 @@ function App() {
       .catch(function (error) {
         console.error("Error writing document: ", error);
       });
-    // setDataUri(dataUri);
+    setDataUri(dataUri);
   }
   const handlers = useSwipeable({
     onSwipedLeft: () => showCamera(!display),
@@ -69,9 +69,9 @@ function App() {
             <span>Swipe left....</span>
         </Swipe>
       </div>
-      
+
       {
-        display &&
+        display && !dataUri &&
         <Camera onTakePhoto={(dataUri) => { handleTakePhoto(dataUri); }} />
         // (display && !dataUri)
         //   ? <Camera onTakePhotoAnimationDone={(dataUri) => { handleTakePhoto(dataUri); }}
@@ -80,6 +80,13 @@ function App() {
         //     isFullscreen={isFullscreen}
         //   />
       }
+      {
+        dataUri &&
+        <Countdown date={Date.now() + 2 * 60 * 60 * 1000}>
+          <span>You are good to go!</span>;
+        </Countdown>
+      }
+
     </div>
   );
 }

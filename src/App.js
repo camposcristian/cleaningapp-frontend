@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import './App.css';
 import Camera from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
+import { useSwipeable, Swipeable } from 'react-swipeable';
+import {Swipe} from "./Components";
 
 function App() {
   const [display, showCamera] = useState(false);
@@ -11,7 +13,12 @@ function App() {
     // Do stuff with the photo...
     console.log('takePhoto');
   }
-
+  const handlers = useSwipeable({
+    onSwipedLeft: () => showCamera(!display),
+    onSwipedRight: () => console.log("Right"),
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true
+  });
   return (
     <div className="App">
       {/* <header className="App-header">
@@ -28,6 +35,11 @@ function App() {
           Learn React
         </a>
       </header> */}
+      <div {...handlers}>
+        <Swipe>
+
+        </Swipe>
+      </div>
       <input type="button" onClick={() => showCamera(!display)} value="Check-in"></input>
       {display &&
         <Camera
@@ -39,3 +51,4 @@ function App() {
 }
 
 export default App;
+

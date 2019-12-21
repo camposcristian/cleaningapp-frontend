@@ -68,7 +68,7 @@ function App() {
             <span>Swipe to left....</span>
         </Swipe>
       </div>
-      <input type="button" onClick={() => showCamera(!display)} value="Check-in"></input>
+      
       {
         display &&
         <Camera onTakePhoto={(dataUri) => { handleTakePhoto(dataUri); }} />
